@@ -1,0 +1,59 @@
+import plantas.*
+
+describe "plantas" {
+	
+	const menta1 = new Menta(obtencion = 2005, altura = 1)
+	const menta2 = new Menta(obtencion = 2005, altura = 0.3)
+	const peperina = new Peperina(obtencion = 2005, altura = 1)
+	
+	const soja1 = new Soja(obtencion = 2009, altura = 0.6)
+	const soja2 = new Soja(obtencion = 2006, altura = 0.4)
+	const soja3 = new Soja(obtencion = 2010, altura = 0.9)
+	const soja4 = new Soja(obtencion = 2010, altura = 2)
+	const sojaTransgenica = new SojaTransgenica(obtencion = 2010, altura = 0.9)
+	
+	const quinoa1 = new Quinoa(espacioQueOcupa = 0.2, obtencion = 2010, altura = 0.5)
+	const quinoa2 = new Quinoa(espacioQueOcupa = 0.9, obtencion = 2006, altura = 0.5)
+	const quinoa3 = new Quinoa(espacioQueOcupa = 0.5, obtencion = 2000, altura = 0.5)
+		
+	test "Menta" {
+		assert.equals(7, menta1.toleranciaAlSol())
+		assert.notThat(menta1.esFuerte())
+		assert.that(menta1.daNuevasSemillas())
+		assert.equals(3, menta1.espacio())
+		
+		assert.notThat(menta2.daNuevasSemillas())
+		assert.equals(0.9, menta2.espacio())
+	}
+	
+	test "peperina" {
+		assert.equals(6, peperina.espacio()) // Mismas características que menta1.
+	}
+	
+	test "soja" {
+		assert.equals(8, soja1.toleranciaAlSol())
+		assert.notThat(soja1.daNuevasSemillas())
+		assert.equals(0.3, soja1.espacio())
+		
+		assert.equals(6, soja2.toleranciaAlSol())
+		
+		assert.that(soja3.daNuevasSemillas())
+
+		assert.equals(12, soja4.toleranciaAlSol())
+	}
+	
+	test "soja transgenica" {
+		assert.notThat(sojaTransgenica.daNuevasSemillas()) //Mismas caracteristicas que soja3.
+	}
+	
+	test "quinoa" {
+		assert.equals(10, quinoa1.toleranciaAlSol())
+		assert.that(quinoa1.daNuevasSemillas())
+		
+		assert.equals(7, quinoa2.toleranciaAlSol())
+		assert.that(quinoa2.daNuevasSemillas())
+		
+		assert.equals(7, quinoa3.toleranciaAlSol())
+		assert.notThat(quinoa3.daNuevasSemillas())
+	}
+}

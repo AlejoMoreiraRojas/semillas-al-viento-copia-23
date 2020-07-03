@@ -1,0 +1,28 @@
+import parcelas.*
+import plantas.*
+
+describe "Parcelas"{
+	
+	const menta1 = new Menta(obtencion = 2005, altura = 1)
+	
+	const soja1 = new Soja(obtencion = 2010, altura = 2)
+	const soja2 = new Soja(obtencion = 2010, altura = 3)
+	const soja3 = new Soja(obtencion = 2010, altura = 1.9)
+	const soja4 = new Soja(obtencion = 2010, altura = 1.5)
+	const soja5 = new Soja(obtencion = 2010, altura = 2)
+	
+	
+	const parcela1 = new Parcela(ancho = 10, largo = 1, horasDeSol = 10, plantas = [soja1, soja2,soja3, soja4, soja5])
+	
+	
+	test "parcela1" {
+	
+		assert.equals(10, parcela1.superficie())
+		assert.equals(5, parcela1.cantidadMaximaDePlantas())
+		
+		assert.notThat(parcela1.sangreJoven())
+		
+		assert.throwsExceptionWithMessage("No se puede plantar." , {parcela1.plantar(menta1)})
+	
+	}
+}
